@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de cumpleaños</title>
+    <meta name="description" content="Carta de cumpleaños interactiva">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <main class="wrapper">
+        <section class="carta-cumpleaños" aria-label="Carta de cumpleaños">
+            <div class="sobre" aria-hidden="true">
+                <img src="./img/sobre-morado-pixel.png" alt="Sobre de carta">
+            </div>
+
+            <article class="tarjeta tarjeta1" aria-live="polite">
+                <div class="pag1">
+                    <h1>Feliz Cumpleaños!</h1>
+                </div>
+            </article>
+
+            <article class="tarjeta tarjeta2" aria-live="polite">
+                <div class="pag2">
+                    <p>
+                        ¡Feliz vuelta al sol! Qué gusto celebrar un año más de tu vida (y de aguantar mis pndejadas 7w7r ). Gracias por tu amistad y por las risas.
+                        Espero que hoy te consientan muchísimo y que este nuevo año te traiga puras cosas buenas, porque de verdad te las mereces. Gracias por ser esa persona con la que puedo hablar de todo y Gracias por ser una amiga tan increíble.
+                        Aunque hoy nos separen los kilómetros, sabes que el cariño y la amistad siguen intactos como el primer día. Ya son años de conocernos y de compartir la vida, y sigo agradeciendo un montón tenerte en la mía.
+                        Te mando un abrazo enorme, ¡disfruta mucho tu día!
+                    </p>
+                </div>
+            </article>
+
+            <article class="tarjeta tarjeta3" aria-live="polite">
+                <div class="pag3">
+                    <div class="album">
+                        <div class="disco">
+                            <img src="./img/Album.png" class="cancion" alt="Portada del disco">
+                            <button id="play-button" class="play-btn" type="button" aria-label="Reproducir canción">▶</button>
+                        </div>
+                    </div>
+                    <audio id="audio-player" preload="auto">
+                        <source src="./Musica/Euphoria-BTS.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </article>
+
+            <article class="tarjeta tarjeta4" aria-live="polite">
+                <div class="pag4">
+                    <div class="album album-final">
+                        <div class="disco disco-final">
+                            <img src="./img/Mei.jpeg" alt="Mei" class="cancion foto-mei">
+                            <button id="play-button-final" class="play-btn" type="button" aria-label="Reproducir canción">▶</button>
+                        </div>
+                    </div>
+                    <audio id="audio-player-final" preload="auto">
+                        <source src="./Musica/CarelessWhisper.MP3" type="audio/mpeg">
+                    </audio>
+                    <h1>🫰🏻T K M🫰🏻</h1>
+                </div>
+            </article>
+        </section>
+
+        <div class="buttons" aria-label="Controles de la carta">
+            <button id="atras" type="button" class="btn secondary" aria-label="Volver a la página anterior">Atrás</button>
+            <button id="abrir" type="button" class="btn primary" aria-label="Abrir la carta">Abrir</button>
+            <button id="cerrar" type="button" class="btn secondary" aria-label="Cerrar la carta">Cerrar</button>
+            <button id="siguiente" type="button" class="btn primary" aria-label="Ir a la página siguiente">Siguiente</button>
+        </div>
+    </main>
+
+    <script src="./js/button.js"></script>
+</body>
+</html>

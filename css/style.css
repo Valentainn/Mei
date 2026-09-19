@@ -1,0 +1,476 @@
+:root {
+    --bg-color: rgb(92, 91, 91);
+    --text-color: #2f1d2e;
+    --button-primary: #f3b7ff;
+    --button-secondary: #ffd8ea;
+    --button-primary-strong: #8f5de7;
+    --button-secondary-strong: #ef7db6;
+    --button-text: #2d1238;
+    --shadow: rgba(20, 20, 20, 0.25);
+    --bts-gradient: linear-gradient(135deg, #0f1021 0%, #2a1b4b 18%, #5d3ea8 38%, #b088f7 62%, #ffd7ee 78%, #9ad7ff 100%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bts-gradient);
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: var(--text-color);
+    padding: 12px;
+}
+
+.wrapper {
+    width: min(90vw, 800px);
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.carta-cumpleaños {
+    position: relative;
+    width: min(100%, 500px);
+    height: min(620px, calc(100vh - 120px));
+}
+
+.sobre,
+.tarjeta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sobre {
+    width: min(23rem, 72vw);
+    height: 16rem;
+    z-index: 7;
+    transition: opacity 0.25s ease;
+    transform-origin: center;
+}
+
+.sobre.vibrando {
+    animation: vibrar 0.7s ease-in-out 0s infinite alternate, pausa 2.8s ease-in-out 0s infinite;
+}
+
+@keyframes vibrar {
+    0%, 18% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(0) scale(1);
+    }
+    24% {
+        transform: translate(-50%, -50%) rotate(-2.4deg) translateX(-8px) scale(1.01);
+    }
+    32% {
+        transform: translate(-50%, -50%) rotate(2.6deg) translateX(9px) scale(1.014);
+    }
+    40% {
+        transform: translate(-50%, -50%) rotate(-1.8deg) translateX(-6px) scale(1.01);
+    }
+    48% {
+        transform: translate(-50%, -50%) rotate(1.9deg) translateX(6px) scale(1.012);
+    }
+    56% {
+        transform: translate(-50%, -50%) rotate(-1.1deg) translateX(-4px) scale(1.006);
+    }
+    64% {
+        transform: translate(-50%, -50%) rotate(1.2deg) translateX(3px) scale(1.008);
+    }
+    72%, 100% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(0) scale(1);
+    }
+}
+
+@keyframes pausa {
+    0%, 62% {
+        opacity: 1;
+    }
+    64%, 70% {
+        opacity: 1;
+    }
+    72%, 100% {
+        opacity: 1;
+    }
+}
+
+.sobre img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.tarjeta {
+    width: min(23rem, 82vw);
+    height: min(42rem, calc(100vh - 180px));
+    max-height: calc(100vh - 180px);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    box-shadow: 0 18px 30px var(--shadow);
+    border-radius: 12px;
+    overflow: hidden;
+    transform: translate(-50%, -50%) scale(0.96);
+    transition: opacity 0.38s ease, transform 0.38s ease, visibility 0.38s ease;
+}
+
+.tarjeta.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+    animation: tarjetaEntrando 0.45s ease-out;
+}
+
+@keyframes tarjetaEntrando {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -46%) scale(0.92);
+    }
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.tarjeta1 {
+    z-index: 8;
+    background-image: url(../img/Fondo.jpg);
+}
+
+.tarjeta2 {
+    z-index: 7;
+    background-image: url(../img/pag1.jpg);
+}
+
+.tarjeta3 {
+    z-index: 6;
+    background-image: url(../img/pag2.jpg);
+}
+
+.tarjeta4 {
+    z-index: 5;
+    background-image: url(../img/pag3.jpg);
+}
+
+.pag1 p,
+.pag2 p,
+.pag3 p,
+.pag4 p {
+    margin: 0;
+    padding: 32px 23px 20px;
+    line-height: 1.5;
+    color: #341b40;
+    font-size: 18px;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.45);
+}
+
+.pag3 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+}
+
+.album {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.disco {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: min(240px, 70vw);
+    height: min(240px, 70vw);
+    border-radius: 50%;
+    background: linear-gradient(45deg, #222, #666, #111);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transform: rotate(0deg);
+    transform-origin: center;
+}
+
+.disco.girando {
+    animation: girar 6s linear infinite;
+}
+
+.cancion {
+    width: min(160px, 52vw);
+    height: min(160px, 52vw);
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+    transform: rotate(0deg);
+    transform-origin: center;
+}
+
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: #3a1c4b;
+    font-size: 1.6rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(32, 17, 42, 0.35);
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+}
+
+.play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.play-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotarImagen {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.pag1 {
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2.1rem 1.25rem 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+}
+
+.pag1 h1 {
+    margin: 0;
+    margin-top: 0.4rem;
+    font-size: clamp(1.5rem, 4vw, 2.6rem);
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+    color: #f8edf9;
+    text-shadow: 0 3px 12px rgba(58, 21, 75, 0.6);
+}
+
+.pag4 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02));
+    transform: translateY(-16px);
+}
+
+.album-final {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.disco-final {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #222, #666, #111);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transform: rotate(0deg);
+    transform-origin: center;
+}
+
+.disco-final.girando {
+    animation: girar 6s linear infinite;
+}
+
+.foto-mei {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 14px 28px rgba(35, 18, 49, 0.22);
+    display: block;
+    margin: 0 auto;
+    animation: fotoSuave 4s ease-in-out infinite alternate;
+}
+
+@keyframes fotoSuave {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 14px 28px rgba(35, 18, 49, 0.22);
+    }
+    100% {
+        transform: scale(1.03);
+        box-shadow: 0 18px 32px rgba(35, 18, 49, 0.3);
+    }
+}
+
+.pag4 h1 {
+    margin: 0;
+    font-size: clamp(1.6rem, 2vw, 2.5rem);
+    letter-spacing: 0.35rem;
+    color: #3b1a4d;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.4);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: min(90vw, 500px);
+    margin-top: 1.2rem;
+    padding-bottom: 0.3rem;
+}
+
+.btn {
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 999px;
+    padding: 0.7rem 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: var(--button-text);
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(32, 17, 42, 0.28), 0 0 0 2px rgba(255, 255, 255, 0.2);
+    background-clip: padding-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 14px 28px rgba(32, 17, 42, 0.35);
+    filter: brightness(1.04);
+}
+
+.primary {
+    background: linear-gradient(135deg, var(--button-primary) 0%, #c6a5ff 100%);
+    border-color: rgba(130, 90, 214, 0.9);
+}
+
+.secondary {
+    background: linear-gradient(135deg, var(--button-secondary) 0%, #ffc9dc 100%);
+    border-color: rgba(191, 92, 148, 0.8);
+}
+
+@media (min-width: 1200px) and (min-height: 2400px) {
+    body {
+        padding: 0;
+    }
+
+    .wrapper {
+        width: 100%;
+        min-height: 100vh;
+        gap: 1.4rem;
+    }
+
+    .carta-cumpleaños {
+        width: min(78vw, 760px);
+        height: min(72vh, 1600px);
+    }
+
+    .sobre {
+        width: min(30rem, 72vw);
+        height: 18rem;
+    }
+
+    .tarjeta {
+        width: min(30rem, 72vw);
+        height: min(58rem, 70vh);
+        max-height: 70vh;
+    }
+
+    .pag1 h1 {
+        font-size: clamp(2.5rem, 4vw, 4rem);
+    }
+
+    .pag1 p,
+    .pag2 p,
+    .pag3 p,
+    .pag4 p {
+        font-size: clamp(1.15rem, 1.8vw, 1.7rem);
+        line-height: 1.6;
+    }
+
+    .disco {
+        width: min(340px, 46vw);
+        height: min(340px, 46vw);
+    }
+
+    .cancion {
+        width: min(220px, 34vw);
+        height: min(220px, 34vw);
+    }
+
+    .play-btn {
+        width: 82px;
+        height: 82px;
+        font-size: 2.1rem;
+    }
+
+    .buttons {
+        margin-top: 1.6rem;
+    }
+
+    .btn {
+        padding: 1rem 1.9rem;
+        font-size: 1.05rem;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
