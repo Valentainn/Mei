@@ -4,6 +4,7 @@ const atras = document.querySelector('#atras');
 const cerrar = document.querySelector('#cerrar');
 const sobre = document.querySelector('.sobre');
 const tarjetas = Array.from(document.querySelectorAll('.tarjeta'));
+const audioFondo = document.querySelector('#audio-fondo');
 const audio = document.querySelector('#audio-player');
 const playButton = document.querySelector('#play-button');
 const disco = document.querySelector('.disco');
@@ -13,6 +14,24 @@ const discoFinal = document.querySelector('.disco-final');
 
 let paginaActual = 0;
 const totalTarjetas = tarjetas.length;
+
+function hayCancionReproduciendose() {
+    return [audio, audioFinal].some((elemento) => elemento && !elemento.paused && !elemento.ended);
+}
+
+function reproducirAudioDeFondo() {
+    if (!audioFondo || hayCancionReproduciendose()) return;
+
+    audioFondo.play().catch(() => {
+        // El navegador puede bloquear el autoplay hasta que haya una interacción.
+    });
+}
+
+function detenerAudioDeFondo() {
+    if (audioFondo && !audioFondo.paused) {
+        audioFondo.pause();
+    }
+}
 
 function actualizarBotonReproduccion() {
     if (!audio || !playButton || !disco) return;
@@ -153,17 +172,26 @@ cerrar.addEventListener('click', () => {
 if (audio && playButton && disco) {
     playButton.addEventListener('click', () => {
         if (audio.paused) {
+            detenerAudioDeFondo();
             audio.play();
         } else {
             audio.pause();
+            reproducirAudioDeFondo();
         }
     });
 
-    audio.addEventListener('play', actualizarBotonReproduccion);
-    audio.addEventListener('pause', actualizarBotonReproduccion);
+    audio.addEventListener('play', () => {
+        detenerAudioDeFondo();
+        actualizarBotonReproduccion();
+    });
+    audio.addEventListener('pause', () => {
+        actualizarBotonReproduccion();
+        reproducirAudioDeFondo();
+    });
     audio.addEventListener('ended', () => {
         audio.currentTime = 0;
         actualizarBotonReproduccion();
+        reproducirAudioDeFondo();
     });
 }
 
@@ -183,21 +211,34 @@ if (audioFinal && playButtonFinal && discoFinal) {
         }
 
         if (audioFinal.paused) {
+            detenerAudioDeFondo();
             audioFinal.play();
         } else {
             audioFinal.pause();
+            reproducirAudioDeFondo();
         }
     });
 
-    audioFinal.addEventListener('play', actualizarBotonReproduccionFinal);
-    audioFinal.addEventListener('pause', actualizarBotonReproduccionFinal);
+    audioFinal.addEventListener('play', () => {
+        detenerAudioDeFondo();
+        actualizarBotonReproduccionFinal();
+    });
+    audioFinal.addEventListener('pause', () => {
+        actualizarBotonReproduccionFinal();
+        reproducirAudioDeFondo();
+    });
     audioFinal.addEventListener('ended', () => {
         audioFinal.currentTime = 0;
         actualizarBotonReproduccionFinal();
+        reproducirAudioDeFondo();
     });
 }
 
 actualizarVista();
 actualizarBotonReproduccion();
 actualizarBotonReproduccionFinal();
+reproducirAudioDeFondo();
+
+document.addEventListener('click', reproducirAudioDeFondo);
+document.addEventListener('keydown', reproducirAudioDeFondo);
 
